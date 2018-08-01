@@ -2,6 +2,6 @@
 #define IMAGES_PUBLISHER_NODE_HPP_
 
 #include <ros/ros.h>
-#include <MyFreenectDevice.hpp> 
+#include <KinectDevice.hpp> 
 
 #endif

@@ -23,6 +23,8 @@ using namespace cv;
 using namespace std;
 
 
+namespace kinect_publisher{
+
 class myMutex {
 	public:
 		myMutex() {
@@ -39,14 +41,16 @@ class myMutex {
 };
 
 
-class MyFreenectDevice : public Freenect::FreenectDevice {
+class KinectDevice : public Freenect::FreenectDevice {
 	public:
-		MyFreenectDevice(freenect_context *_ctx, int _index);
-		~MyFreenectDevice(){
+		KinectDevice(freenect_context *_ctx, int _index);
+		~KinectDevice(){
 			cv::destroyAllWindows();
 			stopVideo();
 			stopDepth();
 		}
+
+		void initializePublication(ros::NodeHandle &nh);
 		
 		// Do not call directly even in child
 		void VideoCallback(void* _rgb, uint32_t timestamp);
@@ -58,7 +62,7 @@ class MyFreenectDevice : public Freenect::FreenectDevice {
 		
 		bool getDepth(Mat& output);
 
-		void retrieve_rgbd(ros::NodeHandle &node, Mat &rgbMat, Mat &depthMat);
+		bool retrieveRGBD(ros::NodeHandle &node, Mat &rgbMat, Mat &depthMat);
 
 	private:
 		std::vector<uint8_t> m_buffer_depth;
@@ -78,5 +82,6 @@ class MyFreenectDevice : public Freenect::FreenectDevice {
     	uint32_t depth_id_ = 0;
 };
 
+}
 
 #endif

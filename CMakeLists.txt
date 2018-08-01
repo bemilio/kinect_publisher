@@ -13,7 +13,7 @@ cs_add_library(${PROJECT_NAME}
 
 include_directories(/usr/include/libusb-1.0)
 
-add_executable(kinect_publisher_node src/kinect_publisher_node.cpp src/MyFreenectDevice.cpp)
+add_executable(kinect_publisher_node src/kinect_publisher_node.cpp src/KinectDevice.cpp)
 
 
 

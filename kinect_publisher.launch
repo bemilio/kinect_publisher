@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="kinect_publisher" type="kinect_publisher_node" name="kinect_pub" output="screen"/>
+</launch>
